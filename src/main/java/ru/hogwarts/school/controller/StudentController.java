@@ -59,6 +59,8 @@ public class StudentController {
     public Collection<Student> findStudentsByAgeRange(@RequestParam("min") int minAge, @RequestParam("max") int maxAge) {
         return studentService.findInRangeAge(minAge, maxAge);
     }
-
-
+    @GetMapping("/faculty")
+    public Collection<Student> getStudentByFaculty(@RequestParam String facultyName) {
+       return studentService.getStudentsInFaculty(facultyName);
+    }
 }

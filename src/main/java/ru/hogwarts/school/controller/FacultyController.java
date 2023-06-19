@@ -60,4 +60,8 @@ public class FacultyController {
         }
         return ResponseEntity.ok(Collections.emptyList());
     }
+    @GetMapping("/student")
+    public Faculty getStudentsFaculty(@RequestParam int id) {
+        return facultyService.getFacultyOfStudent(id);
+    }
 }
