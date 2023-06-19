@@ -1,4 +1,5 @@
 package ru.hogwarts.school.controller;
+import org.apache.catalina.valves.rewrite.ResolverImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,4 +55,10 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.ok().build();
     }
+    @GetMapping("/age")
+    public Collection<Student> findStudentsByAgeRange(@RequestParam("min") int minAge, @RequestParam("max") int maxAge) {
+        return studentService.findInRangeAge(minAge, maxAge);
+    }
+
+
 }
