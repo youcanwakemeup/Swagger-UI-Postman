@@ -14,13 +14,21 @@ public class Student {
     @JoinColumn(name = "faculty_name")
     private Faculty faculty;
 
-    public Student(String name, int age) {
+    public Student(String name, int age)     {
         this.name = name;
         this.age = age;
     }
 
     public Student() {
 
+    }
+
+    public Faculty getFaculty() {
+        return faculty;
+    }
+
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
     }
 
     public Long getId() {
@@ -46,4 +54,5 @@ public class Student {
     public void setAge(int age) {
         this.age = age;
     }
+
 }

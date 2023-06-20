@@ -39,7 +39,7 @@ public class FacultyService {
         return facultyRepository.findByNameLikeIgnoreCase(name);
     }
 
-    public Faculty getFacultyOfStudent(int id) {
+    public Faculty getFacultyOfStudent(Long id) {
         return facultyRepository.findFacultyByStudentsId(id);
     }
 }

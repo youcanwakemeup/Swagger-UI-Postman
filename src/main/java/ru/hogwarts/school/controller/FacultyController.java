@@ -61,7 +61,7 @@ public class FacultyController {
         return ResponseEntity.ok(Collections.emptyList());
     }
     @GetMapping("/student")
-    public Faculty getStudentsFaculty(@RequestParam int id) {
+    public Faculty getStudentsFaculty(@RequestParam Long id) {
         return facultyService.getFacultyOfStudent(id);
     }
 }
