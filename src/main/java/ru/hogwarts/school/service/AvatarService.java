@@ -24,9 +24,11 @@ public class AvatarService {
     @Value("${avatars.dir.path}")
     private String avatarsDir;
 
-    public AvatarService(AvatarRepository avatarRepository, StudentRepository studentRepository, StudentService studentService) {
-        this.avatarRepository = avatarRepository;
+
+    public AvatarService(AvatarRepository avatarRepository, StudentService studentService) {
         this.studentService = studentService;
+        this.avatarRepository = avatarRepository;
+
     }
 
     public void uploadAvatar(Long studentId, MultipartFile file) throws IOException {
