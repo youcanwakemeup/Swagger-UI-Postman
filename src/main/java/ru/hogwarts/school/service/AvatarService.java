@@ -28,7 +28,6 @@ public class AvatarService {
     public AvatarService(AvatarRepository avatarRepository, StudentService studentService) {
         this.studentService = studentService;
         this.avatarRepository = avatarRepository;
-
     }
 
     public void uploadAvatar(Long studentId, MultipartFile file) throws IOException {
