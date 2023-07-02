@@ -12,10 +12,7 @@ import javax.transaction.Transactional;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Objects;
+import java.util.*;
 
 import static java.nio.file.StandardOpenOption.CREATE_NEW;
 
@@ -53,7 +50,16 @@ public class StudentService {
     public Collection<Student> getStudentsInFaculty(String name) {
         return studentRepository.findStudentByFacultyName(name);
     }
+    public int getStudentsCount() {
+        return studentRepository.getAmountOfStudents();
+    }
 
+    public double getAverageAge() {
+        return studentRepository.getAverageAge();
+    }
+    public List<Student> getFiveLastStudents() {
+        return studentRepository.getFiveLastStudents();
+    }
 }
 
 
