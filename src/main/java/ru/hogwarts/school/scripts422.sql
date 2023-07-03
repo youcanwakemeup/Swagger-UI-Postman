@@ -3,18 +3,14 @@ CREATE TABLE People (
     name TEXT,
     age INTEGER,
     hasLicense BOOLEAN
+    carId INT,
+    FOREIGN KEY (carId) REFERENCES Cars(id)
 );
 
 CREATE TABLE Cars (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     brand TEXT,
     model TEXT,
     price INTEGER
 );
 
-CREATE TABLE CarOwnership (
-    person_id INT,
-    car_id INT,
-    FOREIGN KEY (person_id) REFERENCES People(id),
-    FOREIGN KEY (car_id) REFERENCES Cars(id)
-);
