@@ -7,10 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Profile("!secondPort")
 public class InfoController {
     @Value("${server.port}")
-    Integer port;
+    private Integer port;
     @GetMapping("/getPort")
     public Integer getPort() {
         return port;
