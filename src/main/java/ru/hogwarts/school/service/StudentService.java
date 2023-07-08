@@ -84,36 +84,44 @@ public class StudentService {
                 .orElse(0);
     }
 
+
+
     public void parallelThreads() {
-        System.out.println(studentRepository.findById(1L));
-        System.out.println(studentRepository.findById(2L));
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
         Thread firstThread = new Thread(() -> {
-            System.out.println(studentRepository.findById(3L));
-            System.out.println(studentRepository.findById(4L));
+            System.out.println(students.get(2));
+            System.out.println(students.get(3));
         });
         Thread secondThread = new Thread(() -> {
-            System.out.println(studentRepository.findById(5L));
-            System.out.println(studentRepository.findById(6L));
+            System.out.println(students.get(4));
+            System.out.println(students.get(5));
         });
         firstThread.start();
         secondThread.start();
     }
 
     public void syncThreads() {
-        System.out.println(studentRepository.findById(1L));
-        System.out.println(studentRepository.findById(2L));
+        List<Student> students = studentRepository.findAll();
+        System.out.println(students.get(0));
+        System.out.println(students.get(1));
+
         Thread firstThread = new Thread(() -> {
             synchronized (StudentService.class) {
-            System.out.println(studentRepository.findById(3L));
-            System.out.println(studentRepository.findById(4L));
+            printStudentInfoSync(students.get(2));
+            printStudentInfoSync(students.get(3));
         }});
         Thread secondThread = new Thread(() -> {
             synchronized (StudentService.class) {
-            System.out.println(studentRepository.findById(5L));
-            System.out.println(studentRepository.findById(6L));
+                printStudentInfoSync(students.get(4));
+                printStudentInfoSync(students.get(5));
         }});
         firstThread.start();
         secondThread.start();
+    }
+    private synchronized void printStudentInfoSync(Student student) {
+        System.out.println(studentRepository.findById(student.getId()));
     }
 }
 
