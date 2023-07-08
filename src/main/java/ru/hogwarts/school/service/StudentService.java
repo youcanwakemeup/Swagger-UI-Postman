@@ -83,6 +83,36 @@ public class StudentService {
                 .average()
                 .orElse(0);
     }
+
+    public void parallelThreads() {
+        System.out.println(studentRepository.findById(1L));
+        System.out.println(studentRepository.findById(2L));
+        Thread firstThread = new Thread(() -> {
+            System.out.println(studentRepository.findById(3L));
+            System.out.println(studentRepository.findById(4L));
+        });
+        Thread secondThread = new Thread(() -> {
+            System.out.println(studentRepository.findById(5L));
+            System.out.println(studentRepository.findById(6L));
+        });
+        firstThread.start();
+        secondThread.start();
+    }
+
+    public synchronized void syncThreads() {
+        System.out.println(studentRepository.findById(1L));
+        System.out.println(studentRepository.findById(2L));
+        Thread firstThread = new Thread(() -> {
+            System.out.println(studentRepository.findById(3L));
+            System.out.println(studentRepository.findById(4L));
+        });
+        Thread secondThread = new Thread(() -> {
+            System.out.println(studentRepository.findById(5L));
+            System.out.println(studentRepository.findById(6L));
+        });
+        firstThread.start();
+        secondThread.start();
+    }
 }
 
 

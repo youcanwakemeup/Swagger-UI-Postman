@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import ru.hogwarts.school.model.Faculty;
-import ru.hogwarts.school.model.Student;
 import ru.hogwarts.school.repository.FacultyRepository;
 
 import java.util.*;
@@ -67,6 +66,6 @@ public class FacultyService {
         return Stream.iterate(1, a -> a +1)
                 .parallel()
                 .limit(1_000_000)
-                .reduce(0, (a, b) -> a + b );
+                .reduce(0, Integer::sum);
     }
 }

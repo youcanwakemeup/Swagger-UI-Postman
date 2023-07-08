@@ -94,6 +94,14 @@ public class StudentController {
 
     @GetMapping("/students-average-age-stream")
     public double averageAge() {
-        return studentService.getAverageAgeStreamAPI();
+        return studentService.getAverageAgeStreamAPI(); }
+
+    @GetMapping("/parallel-threads")
+    public void parallelThreads() {
+        studentService.parallelThreads();
+    }
+    @GetMapping("/sync-threads")
+    public void syncThreads() {
+        studentService.syncThreads();
     }
 }
