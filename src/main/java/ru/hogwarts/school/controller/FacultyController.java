@@ -64,4 +64,12 @@ public class FacultyController {
     public Faculty getStudentsFaculty(@RequestParam Long id) {
         return facultyService.getFacultyOfStudent(id);
     }
+    @GetMapping("/longest-name")
+    public String getLongestName() {
+        return facultyService.getLongestFacultyName();
+    }
+    @GetMapping("/stream-api")
+    public int streamAPI() {
+        return facultyService.streamAPI();
+    }
 }

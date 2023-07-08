@@ -2,21 +2,14 @@ package ru.hogwarts.school.service;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-import ru.hogwarts.school.model.Avatar;
 import ru.hogwarts.school.model.Student;
-import ru.hogwarts.school.repository.AvatarRepository;
 import ru.hogwarts.school.repository.StudentRepository;
 
-import javax.transaction.Transactional;
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.*;
 
-import static java.nio.file.StandardOpenOption.CREATE_NEW;
+import java.util.*;
+import java.util.stream.Collectors;
+
 
 @Service
 public class StudentService {
@@ -72,6 +65,23 @@ public class StudentService {
     public List<Student> getFiveLastStudents() {
         logger.info("Метод поиска последних пяти студентов");
         return studentRepository.getFiveLastStudents();
+    }
+
+    public Collection<String> getStudentsByLetter() {
+        return studentRepository.findAll().stream()
+                .parallel()
+                .map(Student::getName)
+                .filter(name -> name.startsWith("A"))
+                .map(String::toUpperCase)
+                .sorted()
+                .collect(Collectors.toList());
+    }
+
+    public double getAverageAgeStreamAPI() {
+        return studentRepository.findAll().stream()
+                .mapToInt(Student::getAge)
+                .average()
+                .orElse(0);
     }
 }
 
